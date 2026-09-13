@@ -68,8 +68,9 @@ def test_excel_generation_has_hyperlink(tmp_path: Path):
     book = load_workbook(path)
     assert book.sheetnames == ["New Jobs", "All Jobs"]
     assert book["All Jobs"]["A1"].value == "Date Discovered"
+    assert book["All Jobs"]["B1"].value == "Time Discovered"
     assert book["All Jobs"]["A2"].value == str(db.current_jobs()[0]["first_seen_at"])[:10]
-    assert book["All Jobs"]["H2"].hyperlink.target.endswith("tjt-100")
+    assert book["All Jobs"]["I2"].hyperlink.target.endswith("tjt-100")
 
 
 def test_client_handles_http_error():
